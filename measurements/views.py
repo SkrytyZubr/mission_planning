@@ -162,6 +162,9 @@ def calculate_distance_view(request):
 
     #remove useless files
     file_list = os.listdir('media')
-    os.remove('media/'+file_list[-1])
+    if file_list[-1] == 'Beira.kmz':
+        None
+    else:
+        os.remove('media/'+file_list[-1])
 
     return render(request, 'measurements/main.html', context)
