@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+calculate distance
+{% endblock title %}
+
+{% block content %}
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      </div>
+    </div>
+  </div>
+</div>
+
+{{ map|safe }}
+
+<form method="POST" enctype="multipart/form-data">
+  {%csrf_token%}
+  <br>
+  <input type="file" name="docfile" class="btn btn-primary" style="display:block; margin : 0 auto;">
+  <br><br>
+  <button type="submit" class="btn btn-primary" style="display:block; margin : 0 auto;">Confirm</button>
+</form>
+
+{% if request.POST and distance is not None %}
+    <script>
+        $(window).on('load', function(){
+            $('#exampleModal').modal('show')
+        })
+    </script>
+{% endif %}
+
+{% endblock content %}
