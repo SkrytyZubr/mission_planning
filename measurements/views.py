@@ -21,7 +21,10 @@ def calculate_distance_view(request):
     fiona.drvsupport.supported_drivers['KML'] = 'rw'
 
     #open kmz file and unzpi kml
-    kmz = ZipFile('media/'+uploaded_file.name, 'r')
+    try:
+        kmz = ZipFile('media/'+uploaded_file.name, 'r')
+    except UnboundLocalError:
+        kmz = ZipFile('media/Beira.kmz', 'r')
     kmz.extract('doc.kml')
         
 
